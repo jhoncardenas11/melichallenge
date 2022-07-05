@@ -1,0 +1,58 @@
+@import "../../Styles/variables.scss";
+
+nav{
+    background-color: $meli_yellow;
+    display: grid;
+    grid-template-columns: 10% 15% 65% 10%;
+    grid-template-areas: "b1 l f b2";
+    height: 70px;
+    @media (max-width: 852px) {
+        grid-template-columns: 10% 20% 60% 10%;
+    }
+    @media (max-width: 425px) {
+        grid-template-columns: 30% 70%;
+        grid-template-rows: auto;
+        grid-template-areas: "l f";
+    }
+    .logo{
+        grid-area: l;
+        justify-self: center;
+        align-self: center;
+        img{
+            object-fit: contain;
+            margin-top: 1px;
+            @media (max-width: 425px) {
+                width: 100px;
+            }
+        }
+    }
+    form{
+        grid-area: f;
+        align-self: center;
+        @media (max-width: 425px) {
+            justify-self: center;
+        }
+        input{
+            width: 90%;
+            box-shadow: 0 1px 2px 0 rgb(0 0 0 / 20%);
+            border-radius: 2px;
+            background-color: #fff;
+            height: 39px;
+            border: none;
+            color: $text;
+            padding-left: 10px;
+            font-size: 14px;
+            margin-top: 1px;
+            @media (max-width: 425px) {
+                width: auto;
+            }
+        }
+        button{
+            cursor: pointer;
+            border: none;
+            background-color: #fff;
+            box-shadow: 0 1px 2px 0 rgb(0 0 0 / 20%);
+            height: 39px;
+        }
+    }
+}
