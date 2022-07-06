@@ -2,3 +2,5 @@
 2. Instale para compilar sass - npm install --save-dev node-sass
 3. Cree carpetas para estilos
 4. Instale para crear el react router - npm install react-router-dom
+5. Creo un archivo router
+6. 

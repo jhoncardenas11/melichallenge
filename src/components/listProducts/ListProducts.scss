@@ -1,0 +1,59 @@
+@import "../../Styles/variables.scss";
+
+.mainContent{
+    width: 90%;
+    margin: auto;
+    .boxProducts{
+        background-color: #fff;
+        padding: 20px;
+        .boxItem{
+            display: grid;
+            grid-template-columns: 20% 60% 20%;
+            grid-template-areas: "im in pr";
+            margin-bottom: 30px;
+            @media (max-width: 425px) {
+                grid-template-columns: 1fr;
+                grid-template-rows: auto;
+                grid-template-areas:
+                    "im"
+                    "in"
+                    "pr"
+                ;
+            }
+            .img{
+                grid-area: im;
+                img{
+                    width: 200px;
+                    height: 200px;
+                    object-fit: cover;
+                }
+            }
+            .boxInfo{
+                grid-area: in;
+                width: auto;
+                .price{
+                    font-size: 24px;
+                    font-weight: 400;
+                    line-height: 1.25;
+                }
+                a{
+                    text-decoration: none;
+                    .info{
+                        color: #333;
+                        font-size: 20px;
+                        font-weight: 300;
+                        line-height: 1.3;
+                    }
+                }
+            }
+            .boxPromo{
+                grid-area: pr;
+                justify-self: flex-end;
+                width: auto;
+                .promo{
+                    color: #00a650;
+                }
+            }
+        }
+    }
+}
