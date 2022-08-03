@@ -1,40 +1,33 @@
 import { Link } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { useState } from "react";
+import Search from "../search/Search";
 import "./ListProducts.scss";
 
 function ListProducts() {
 
-    const [isLoading, setIsLoading] = useState(true);
     const [data, setData] = useState(null);
+
     let products = [];
 
-    useEffect(() => {
-        fetch("https://api.mercadolibre.com/sites/MLA/search?q=:windows")
+
+    const callback = (value) => {
+        fetch(`https://api.mercadolibre.com/sites/MLA/search?q=:${value}`)
             .then((response) => response.json())
             .then((data) => {
                 setData(data);
-                setIsLoading(false);
             });
-    }, []);
+    }
 
     if (data) {
         products = data.results.slice(0, 4);
     }
 
-    if (isLoading) {
-        return(
-            <>
-                <div className="charge">
-                    <h1>Cargando...</h1>
-                </div>
-            </>
-        );
-    }
     return(
         <>
+            <Search parentCallback={callback}/>
             <div className="mainContent">
                 {products.map(product => 
-                    <div className="boxProducts">
+                    <div className="boxProducts" key={product.id}>
                         <div className="boxItem">
                             <div className="img">
                                 <Link to={`/detail/${product.id}`}>
