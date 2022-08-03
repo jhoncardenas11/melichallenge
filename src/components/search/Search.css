@@ -1,0 +1,65 @@
+nav {
+  background-color: #fff159;
+  display: grid;
+  grid-template-columns: 10% 15% 65% 10%;
+  grid-template-areas: "b1 l f b2";
+  height: 70px;
+}
+@media (max-width: 852px) {
+  nav {
+    grid-template-columns: 10% 20% 60% 10%;
+  }
+}
+@media (max-width: 425px) {
+  nav {
+    grid-template-columns: 30% 70%;
+    grid-template-rows: auto;
+    grid-template-areas: "l f";
+  }
+}
+nav .logo {
+  grid-area: l;
+  justify-self: center;
+  align-self: center;
+}
+nav .logo img {
+  -o-object-fit: contain;
+     object-fit: contain;
+  margin-top: 1px;
+}
+@media (max-width: 425px) {
+  nav .logo img {
+    width: 100px;
+  }
+}
+nav form {
+  grid-area: f;
+  align-self: center;
+}
+@media (max-width: 425px) {
+  nav form {
+    justify-self: center;
+  }
+}
+nav form input {
+  width: 90%;
+  border-radius: 2px;
+  background-color: #fff;
+  height: 39px;
+  border: none;
+  color: #333;
+  padding-left: 10px;
+  font-size: 14px;
+  margin-top: 1px;
+}
+@media (max-width: 425px) {
+  nav form input {
+    width: auto;
+  }
+}
+nav form button {
+  cursor: pointer;
+  border: none;
+  background-color: #fff;
+  height: 39px;
+}/*# sourceMappingURL=Search.css.map */

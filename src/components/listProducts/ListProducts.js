@@ -1,90 +1,58 @@
 import { Link } from "react-router-dom";
+import { useState, useEffect } from "react";
 import "./ListProducts.scss";
-import testImg from "../../assets/images/image.jpeg";
 
 function ListProducts() {
+
+    const [isLoading, setIsLoading] = useState(true);
+    const [data, setData] = useState(null);
+    let products = [];
+
+    useEffect(() => {
+        fetch("https://api.mercadolibre.com/sites/MLA/search?q=:windows")
+            .then((response) => response.json())
+            .then((data) => {
+                setData(data);
+                setIsLoading(false);
+            });
+    }, []);
+
+    if (data) {
+        products = data.results.slice(0, 4);
+    }
+
+    if (isLoading) {
+        return(
+            <>
+                <div className="charge">
+                    <h1>Cargando...</h1>
+                </div>
+            </>
+        );
+    }
     return(
         <>
             <div className="mainContent">
-                <div className="breadCrumb">
-                    <p>
-                        <span>
-                            <Link to="/">span1 </Link>
-                        </span>
-                        <span>
-                            <Link to="/">/ span2 </Link>
-                        </span>
-                        <span>
-                            <Link to="/">/ span3</Link>
-                        </span>
-                    </p>
-                </div>
-                <div className="boxProducts">
-                    <div className="boxItem">
-                        <div className="img">
-                            <Link to="/detail/1">
-                                <img src={testImg} alt="test" />
-                            </Link>
+                {products.map(product => 
+                    <div className="boxProducts">
+                        <div className="boxItem">
+                            <div className="img">
+                                <Link to={`/detail/${product.id}`}>
+                                    <img src={product.thumbnail} alt={product.title} />
+                                </Link>
+                            </div>
+                            <div className="boxInfo">
+                                <p className="price">$ {product.price}</p>
+                                <Link to={`/detail/${product.id}`}>
+                                    <h2 className="info">{product.title}</h2>
+                                </Link>
+                            </div>
+                            <div className="boxPromo">
+                                <p className="promo">Promoción</p>
+                            </div>
                         </div>
-                        <div className="boxInfo">
-                            <p className="price">$ 1.264</p>
-                            <Link to="/detail/1">
-                                <h2 className="info">Lorem ipsum dolor sit amet consectetur adipisicing elit. Modi rem vero iure voluptates vitae.</h2>
-                            </Link>
-                        </div>
-                        <div className="boxPromo">
-                            <p className="promo">Promoción</p>
-                        </div>
-                    </div>
-                    <div className="boxItem">
-                        <div className="img">
-                            <Link to="/detail/2">
-                                <img src={testImg} alt="test" />
-                            </Link>
-                        </div>
-                        <div className="boxInfo">
-                            <p className="price">$ 1.264</p>
-                            <Link to="/detail/2">
-                                <h2 className="info">Lorem ipsum dolor sit amet consectetur adipisicing elit. Modi rem vero iure voluptates vitae.</h2>
-                            </Link>
-                        </div>
-                        <div className="boxPromo">
-                            <p className="promo">Promoción</p>
-                        </div>
-                    </div>
-                    <div className="boxItem">
-                        <div className="img">
-                            <Link to="/detail/3">
-                                <img src={testImg} alt="test" />
-                            </Link>
-                        </div>
-                        <div className="boxInfo">
-                            <p className="price">$ 1.264</p>
-                            <Link to="/detail/3">
-                                <h2 className="info">Lorem ipsum dolor sit amet consectetur adipisicing elit. Modi rem vero iure voluptates vitae.</h2>
-                            </Link>
-                        </div>
-                        <div className="boxPromo">
-                            <p className="promo">Promoción</p>
-                        </div>
-                    </div>
-                    <div className="boxItem">
-                        <div className="img">
-                            <Link to="/detail/4">
-                                <img src={testImg} alt="test" />
-                            </Link>
-                        </div>
-                        <div className="boxInfo">
-                            <p className="price">$ 1.264</p>
-                            <Link to="/detail/4">
-                                <h2 className="info">Lorem ipsum dolor sit amet consectetur adipisicing elit. Modi rem vero iure voluptates vitae.</h2>
-                            </Link>
-                        </div>
-                        <div className="boxPromo">
-                            <p className="promo">Promoción</p>
-                        </div>
-                    </div>
-                </div>
+                    </div>  
+                )}
             </div>
         </>
     );

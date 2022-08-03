@@ -1,0 +1,56 @@
+.mainContent {
+  width: 90%;
+  margin: auto;
+}
+.mainContent .boxProducts {
+  background-color: #fff;
+  padding: 20px;
+}
+.mainContent .boxProducts .boxItem {
+  display: grid;
+  grid-template-columns: 20% 60% 20%;
+  grid-template-areas: "im in pr";
+  margin-bottom: 30px;
+}
+@media (max-width: 425px) {
+  .mainContent .boxProducts .boxItem {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+    grid-template-areas: "im" "in" "pr";
+  }
+}
+.mainContent .boxProducts .boxItem .img {
+  grid-area: im;
+}
+.mainContent .boxProducts .boxItem .img img {
+  width: 200px;
+  height: 200px;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+.mainContent .boxProducts .boxItem .boxInfo {
+  grid-area: in;
+  width: auto;
+}
+.mainContent .boxProducts .boxItem .boxInfo .price {
+  font-size: 24px;
+  font-weight: 400;
+  line-height: 1.25;
+}
+.mainContent .boxProducts .boxItem .boxInfo a {
+  text-decoration: none;
+}
+.mainContent .boxProducts .boxItem .boxInfo a .info {
+  color: #333;
+  font-size: 20px;
+  font-weight: 300;
+  line-height: 1.3;
+}
+.mainContent .boxProducts .boxItem .boxPromo {
+  grid-area: pr;
+  justify-self: flex-end;
+  width: auto;
+}
+.mainContent .boxProducts .boxItem .boxPromo .promo {
+  color: #00a650;
+}/*# sourceMappingURL=ListProducts.css.map */
